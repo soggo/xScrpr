@@ -14,15 +14,15 @@ An automated system that monitors your Twitter direct messages and message reque
 
 1. **Download and install everything:**
    ```bash
- 1.  git clone 
- 2.  cd twitter-dm-fetcher
- 3.   ./install.sh  - how to actually start it all.
+   git clone git@github.com:soggo/xScrpr.git 
+   cd xScrpr.git
+    ./install.sh  - how to actually start it all.
    ```
 
 2. **Start monitoring:**
    ```bash
- npm start               - One-time run
-  npm run start:daemon    - Background monitoring (RECOMMENDED)
+   npm start               - One-time run
+   npm run start:daemon    - Background monitoring (RECOMMENDED)
    ```
 
 That's it! The system will guide you through setup and start monitoring automatically.
@@ -211,6 +211,5 @@ If you want your data automatically organized in a spreadsheet-like interface:
 
 - Your API keys and login info are stored locally on your computer
 - Never share your `config.json`, `.env`, or `airtable-config.json` files
-- The system only reads your messages - it never sends or replies to anything
-
+- The system only reads your messages  it never sends or replies to anything
 
