@@ -1,0 +1,54 @@
+{
+  "name": "twitter-dm-fetcher",
+  "version": "1.0.0",
+  "description": "Automated Twitter DM and message request monitoring system with AI-powered analysis",
+  "main": "scrape-dms.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "node run-both-scrapers.js",
+    "start:daemon": "node daemon.js start",
+    "daemon:start": "node daemon.js start",
+    "daemon:stop": "node daemon.js stop",
+    "daemon:status": "node daemon.js status",
+    "daemon:logs": "node daemon.js logs",
+    "daemon:restart": "node daemon.js restart",
+    "start:dms": "node scrape-dms.js",
+    "start:requests": "node scrape-message-requests.js",
+    "start:both": "node run-both-scrapers.js",
+    "analyze": "node analyze-message-requests.js",
+    "search": "node run-searchable.js",
+    "test:airtable": "node test-airtable.js",
+    "test:scrapers": "node test-both-scrapers.js"
+  },
+  "keywords": [
+    "twitter",
+    "automation",
+    "playwright",
+    "dm",
+    "monitoring",
+    "ai",
+    "gemini",
+    "airtable",
+    "scraping"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/twitter-dm-fetcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/twitter-dm-fetcher/issues"
+  },
+  "homepage": "https://github.com/your-username/twitter-dm-fetcher#readme",
+  "dependencies": {
+    "@google/genai": "^0.3.0",
+    "airtable": "^0.12.2",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^17.2.1",
+    "playwright": "^1.54.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

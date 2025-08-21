@@ -1,0 +1,68 @@
+{
+  "autonomous": {
+    "enabled": true,
+    "checkInterval": 14400000,
+    "runOnStartup": true,
+    "maxRetries": 3,
+    "retryDelay": 30000,
+    "logFile": "daemon.log"
+  },
+  "notifications": {
+    "enabled": true,
+    "methods": ["console", "file"],
+    "logFile": "execution.log"
+  },
+  "storage": {
+    "useTimestamps": true
+  },
+  "device": {
+    "checkDeviceOnStart": true,
+    "autoStartScrcpy": false,
+    "scrcpyArgs": ["--stay-awake", "--turn-screen-off"]
+  },
+  "gemini": {
+    "apiKey": "YOUR_GEMINI_API_KEY_HERE",
+    "model": "gemini-2.5-flash",
+    "systemInstruction": "You are a Twitter DM checking bot. Your job is to determine if there are any new unread messages in the Twitter DM interface. You should explain what you see first, then end your response with either 'yes' or 'no'.",
+    "prompt": "Analyze the Twitter DM interface. Are there any new unread direct messages visible? First explain what unread messages you can see (usernames, blue dots, bold text, etc.) or why there are no new messages, then end your response with either 'yes' or 'no'.",
+    "messageRequests": {
+      "systemInstruction": "You are a Twitter message requests analyzer. Your job is to determine if there are any NEW message requests. Focus on requests labeled as 'new request' - ignore anything marked as 'pending request'. You should explain what you see first, then end your response with either 'yes' or 'no'.",
+      "prompt": "Analyze the Twitter message requests section for NEW requests. IMPORTANT: Ignore any requests marked as 'pending request' - only focus on requests specifically labeled as 'new request' with unread indicators. First explain what you see in the MESSAGE REQUESTS section only, then end your response with either 'yes' or 'no'."
+    },
+    "textExtraction": {
+      "enabled": true,
+      "overviewSystemInstruction": "You are a Twitter data extractor. Extract user information from Twitter DM overview data. Return data in simple structured format.",
+      "overviewPrompt": "Extract the username and @ handle of the person with new messages from this Twitter DM overview data. Format:\nUsername: [Display Name]\nHandle: [@ handle]",
+      "conversationSystemInstruction": "You are a Twitter message extractor. Extract the complete DM conversation content from Twitter conversation data. Return messages in simple structured format.",
+      "conversationPrompt": "Extract all the direct message content from this Twitter conversation data. Format each message as:\n[Sender]: [Message content] [timestamp if visible]\n\nList all messages in chronological order. Use 'Me:' for your messages and '@handle:' for the other person.",
+      "messageRequestsOverviewSystemInstruction": "You are a Twitter message requests extractor. Extract user information from Twitter message requests overview data. Focus ONLY on NEW requests - ignore any requests marked as 'pending request'. Return data in simple structured format.",
+      "messageRequestsOverviewPrompt": "Extract the username and @ handle of people who have sent NEW message requests from this Twitter message requests overview data. IMPORTANT: Only extract requests labeled as 'new request' or with clear unread indicators - ignore any 'pending request' entries. Format:\nUsername: [Display Name]\nHandle: [@ handle]\nPreview: [Message preview if visible]\nStatus: [new request or pending request]",
+      "messageRequestsConversationSystemInstruction": "You are a Twitter message requests extractor. Extract the complete message request conversation content from Twitter message request conversation data. Return messages in simple structured format.",
+      "messageRequestsConversationPrompt": "Extract all the message request content from this Twitter message request conversation data. Format each message as:\n[Sender]: [Message content] [timestamp if visible]\n\nList all messages in chronological order. Use 'Me:' for your messages and '@handle:' for the person making the request."
+    },
+    "businessAnalysis": {
+      "enabled": true,
+      "systemInstruction": "You are a business analyst. Your job is to analyze Twitter message requests to identify potential business opportunities and categorize them appropriately.",
+      "prompt": "Analyze this message request and provide the following information in structured text format:\n\n1. **summary**: Brief business summary of the message. If it's startup/business related, summarize the business. If not business related, respond with 'Not business related'.\n\n2. **vertical**: If business related, categorize into a relevant vertical (e.g., GenAI, B2B SaaS, B2C, Healthcare, Fintech, etc.). Be specific and create appropriate categories as needed. If not business related, respond with 'N/A'.\n\n3. **website**: Extract any website URL mentioned in the message. If no website is provided, respond with 'Website not provided'.\n\n4. **compatibility_rating**: Rate from 1-10 how well this opportunity aligns with your business interests. Consider factors like innovation, market potential, and relevance.\n\nReturn in this exact format:\nSUMMARY: [your summary here]\nVERTICAL: [your vertical here]\nWEBSITE: [website or 'Website not provided']\nCOMPATIBILITY_RATING: [rating number]"
+    }
+  },
+  "searchable": {
+    "enabled": true,
+    "systemInstruction": "You are a company name extractor and profile finder. Your job is to identify company names from business messages and find their official websites and LinkedIn profiles using search results.",
+    "searchPrompt": "Based on this message, what is the main company name that I should search for to find their official website and LinkedIn profile? Return ONLY the company name, nothing else.",
+    "searches": {
+      "website": {
+        "enabled": true,
+        "prompt": "Find the official company website for the company. Look for their main corporate website URL, not social media profiles or third-party sites.",
+        "airtableColumn": "pr-site",
+        "systemInstruction": "You are a website finder. Your job is to find official company websites using search results. Return only the main company website URL, not social media or third-party sites."
+      },
+      "linkedin": {
+        "enabled": true,
+        "prompt": "Search Google using these exact queries: 'site:linkedin.com/company/ [COMPANY_NAME]' and '[COMPANY_NAME] site:linkedin.com/company/' and '[COMPANY_NAME] [VERTICAL] linkedin company page'. Look specifically for their main company LinkedIn profile (linkedin.com/company/...), not individual employee profiles. Use the site operator to target LinkedIn company pages directly.",
+        "airtableColumn": "pr-linkedin",
+        "systemInstruction": "You are a LinkedIn profile finder. Use site-specific search operators like 'site:linkedin.com/company/' to find official company LinkedIn profiles. Return only LinkedIn company pages (linkedin.com/company/...), not individual profiles (/in/)."
+      }
+    }
+  }
+}

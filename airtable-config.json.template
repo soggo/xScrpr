@@ -1,0 +1,6 @@
+{
+  "apiKey": "YOUR_AIRTABLE_API_KEY_HERE",
+  "baseId": "YOUR_AIRTABLE_BASE_ID_HERE",
+  "messageTableId": "YOUR_MESSAGES_TABLE_ID_HERE",
+  "messageRequestsTableId": "YOUR_MESSAGE_REQUESTS_TABLE_ID_HERE"
+}
