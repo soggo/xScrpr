@@ -33,6 +33,18 @@ That's it! The system will guide you through setup and start monitoring automati
 - **Your Twitter login** - Either cookies or username/password
 - **Airtable account** (optional) - For organized data storage
 
+## How It Works - The Flow
+
+The system follows a specific sequence when running:
+
+1. **Regular DMs First** - Checks your normal direct message conversations
+2. **Message Requests Second** - Then processes message requests from people you don't follow
+3. **AI Analysis** - Each message gets analyzed by Google's Gemini AI for business opportunities
+4. **Data Organization** - Results are saved to organized JSON files
+5. **Airtable Upload** - If configured, data automatically uploads to your Airtable
+
+This two-step approach (DMs → Message Requests) ensures you capture all potential business inquiries systematically.
+
 ## How to Set Up
 
 ### Option 1: Automatic Setup (Recommended)
@@ -136,7 +148,31 @@ If you want your data automatically organized in a spreadsheet-like interface:
 
 1. Create a free Airtable account
 2. Follow the setup guide in `AIRTABLE_SETUP.md`
-3. Your data will automatically upload to Airtable after each run
+3. **IMPORTANT: Set up your Airtable columns exactly as specified below**
+4. Your data will automatically upload to Airtable after each run
+
+### Required Airtable Columns (Case Sensitive!)
+
+**You MUST create these exact columns in your Airtable base:**
+
+| Column Name | Type | Required |
+|-------------|------|----------|
+| `Name` | Long text | Yes |
+| `Username` | Long text | Yes |
+| `Message` | Long text | Yes |
+| `Timestamp` | Long text | Yes |
+| `summary` | Long text | Yes |
+| `vertical` | Long text | Yes |
+| `website` | Long text | Yes |
+| `compatibility_rating` | Long text | Yes |
+| `pr-site` | Long text | Yes |
+| `pr-linkedin` | Long text | Yes |
+
+** CRITICAL NOTES:**
+- **Column names are CASE SENSITIVE** - Use exactly as shown above sorry about that 8-)
+- **All columns must be "Long text" type** in Airtable
+- **Follow the spelling exactly** (including `vertical` not `veetical`, `compatibility_rating` with underscore)
+- If you want different column names, you'll need to modify the code in `airtable-integration.js`
 
 ## Troubleshooting
 
