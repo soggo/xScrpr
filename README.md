@@ -50,6 +50,24 @@ If you prefer to set things up yourself:
    - **Easy way:** Copy cookies from your browser (see `TWITTER_AUTH_SETUP.md`)
    - **Alternative:** Use your Twitter username and password
 
+### Quick Guide: Getting Your X/Twitter auth_token and ct0
+
+To get your authentication tokens from X (Twitter):
+
+1. **Log into X/Twitter** in your browser
+2. **Open Developer Tools** (F12 or right-click → Inspect)
+3. **Go to Application/Storage tab** → Cookies → https://x.com (or twitter.com)
+4. **Find these two cookies:**
+   - `auth_token` - Copy the entire value
+   - `ct0` - Copy the entire value
+5. **Add them to your `.env` file:**
+   ```
+   TWITTER_AUTH_TOKEN=your_auth_token_here
+   TWITTER_CT0=your_ct0_here
+   ```
+
+**Note:** These tokens expire, so you may need to refresh them periodically if authentication fails.
+
 3. **Configure the system:**
    - Edit `config.json` and add your Gemini API key
    - Edit `.env` file with your Twitter login info
@@ -158,4 +176,5 @@ If you want your data automatically organized in a spreadsheet-like interface:
 - Your API keys and login info are stored locally on your computer
 - Never share your `config.json`, `.env`, or `airtable-config.json` files
 - The system only reads your messages - it never sends or replies to anything
+
 
