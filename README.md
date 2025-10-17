@@ -207,9 +207,3 @@ If you want your data automatically organized in a spreadsheet-like interface:
 
 3. **Check your data folders** for JSON files to see what the system extracted
 
-## Security Notes
-
-- Your API keys and login info are stored locally on your computer
-- Never share your `config.json`, `.env`, or `airtable-config.json` files
-- The system only reads your messages  it never sends or replies to anything
-
